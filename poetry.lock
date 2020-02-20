@@ -1,10 +1,41 @@
 [[package]]
 category = "main"
+description = "High level compatibility layer for multiple asynchronous event loop implementations"
+name = "anyio"
+optional = false
+python-versions = ">= 3.5.3"
+version = "1.2.3"
+
+[package.dependencies]
+async-generator = "*"
+sniffio = ">=1.1"
+
+[[package]]
+category = "main"
 description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 name = "appdirs"
 optional = false
 python-versions = "*"
 version = "1.4.3"
+
+[[package]]
+category = "main"
+description = "Async generators and context managers for Python 3.5+"
+name = "async-generator"
+optional = false
+python-versions = ">=3.5"
+version = "1.10"
+
+[[package]]
+category = "main"
+description = "A simple anyio-compatible fork of Click, for powerful command line utilities."
+name = "asyncclick"
+optional = false
+python-versions = ">=3.6"
+version = "7.0.9"
+
+[package.dependencies]
+anyio = "*"
 
 [[package]]
 category = "dev"
@@ -80,6 +111,14 @@ dataclasses = "*"
 
 [[package]]
 category = "main"
+description = "Sniff out which async library your code is running under"
+name = "sniffio"
+optional = false
+python-versions = ">=3.5"
+version = "1.1.0"
+
+[[package]]
+category = "main"
 description = "The little ASGI library that shines."
 name = "starlette"
 optional = false
@@ -119,11 +158,14 @@ python-versions = ">=3.6.1"
 version = "8.1"
 
 [metadata]
-content-hash = "9ae21f9367eca5d3b4ef49a09863e979e01347661ae63db1e33c21017f01b024"
+content-hash = "70379d4393b8df1e4ce680a05c390491ffee4f0ad9ab9ed2420c3a9c087bff93"
 python-versions = "^3.7"
 
 [metadata.hashes]
+anyio = ["2b758634cf1adc3589937d91f6736b3696d091c1485a10c9cc3f1bd5e6d96813", "78db97333af17381cadd2cc0dbd3d4e0258e4932368eab8895cb65a269db054e"]
 appdirs = ["9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92", "d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e"]
+async-generator = ["01c7bf666359b4967d2cda0000cc2e4af16a0ae098cbffcb8472fb9e8ad6585b", "6ebb3d106c12920aaae42ccb6f787ef5eefdcdd166ea3d628fa8476abe712144"]
+asyncclick = ["62cebf3eca36d973802e2dd521ca1db11c5bf4544e9795e093d1a53cb688a8c2"]
 attrs = ["08a96c641c3a74e44eb59afb61a24f2cb9f4d7188748e76ba4bb5edfa3cb7d1c", "f7b7ce16570fe9965acd6d30101a28f62fb4a7f9e926b3bbc9b61f8b04247e72"]
 black = ["817243426042db1d36617910df579a54f1afd659adb96fc5032fcf4b36209739", "e030a9a28f542debc08acceb273f228ac422798e5215ba2a791a6ddeaaca22a5"]
 click = ["2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13", "5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"]
@@ -131,6 +173,7 @@ dataclasses = ["454a69d788c7fda44efd71e259be79577822f5e3f53f029a22d08004e951dc9f
 pyee = ["705806bb09bc4b17a729d9a3d19a4f4e765abd010eb18e032d72f76452d07552", "b0e5b89b17c8bd52a3c6517a545187907a8c69ce90169d29ebd8d2d5d7e4bc7d"]
 pyppeteer2 = ["61c8aa4d6ae8d751bf9b6dfbe5b38710ce82b4bde2e47f1f34811fcf61c9290f", "a469e08b67d6bd87c29d7b5e401d7843213e2a535b3ffbe39a00635535662a46"]
 screeninfo = ["811b61e10af7dd1f5e9cd246b4faf4f93b478757a8a6ace28c64754d2f1aff03"]
+sniffio = ["20ed6d5b46f8ae136d00b9dcb807615d83ed82ceea6b2058cecb696765246da5", "8e3810100f69fe0edd463d02ad407112542a11ffdc29f67db2bf3771afb87a21"]
 starlette = ["009ff25d0a96bd62272ae199a61a9e6b40b2f0be592459e61be80d631944d613", "b5b76bdb34b8073e4ec37e8791e250db9cde99953ca927de452e158c6845dcdd"]
 toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
 tqdm = ["0d8b5afb66e23d80433102e9bd8b5c8b65d34c2a2255b2de58d97bd2ea8170fd", "f35fb121bafa030bd94e74fcfd44f3c2830039a2ddef7fc87ef1c2d205237b24"]

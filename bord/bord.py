@@ -21,10 +21,10 @@ class Bord:
 
 
     async def init_tabs(self):
-        self.tabs = await browser.pages()
+        self.tabs = await self.browser.pages()
 
         while len(self.tabs) < len(self.config.urls):
-            self.tabs.append(await browser.newPage())
+            self.tabs.append(await self.browser.newPage())
 
     async def set_tab_urls(self):
         for tab, url in zip(self.tabs, self.config.urls):
@@ -37,7 +37,7 @@ class Bord:
         tab = self.tabs[self._tab_index]
         await asyncio.sleep(self.config.interval)
         print(f"Switching to tab[{self._tab_index}] = {tab}")
-        await tabs[self._tab_index].bringToFront()
+        await self.tabs[self._tab_index].bringToFront()
         self._tab_index += 1
-        if self._tab_index == len(tabs):
+        if self._tab_index == len(self.tabs):
             self._tab_index = 0
