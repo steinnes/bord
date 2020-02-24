@@ -19,6 +19,9 @@ pytest = "^5.3"
 [tool.poetry.scripts]
 bord = 'bord.cli:main'
 
+[tool.black]
+line-length = 115
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
