@@ -6,7 +6,6 @@ authors = ["Steinn Eldjárn Sigurðarson <steinnes@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-starlette = "^0.13.1"
 pyppeteer2 = "=0.2.2"
 urllib3 = "^1.25"
 screeninfo = "^0.6.1"

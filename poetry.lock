@@ -118,14 +118,6 @@ python-versions = ">=3.5"
 version = "1.1.0"
 
 [[package]]
-category = "main"
-description = "The little ASGI library that shines."
-name = "starlette"
-optional = false
-python-versions = ">=3.6"
-version = "0.13.1"
-
-[[package]]
 category = "dev"
 description = "Python Library for Tom's Obvious, Minimal Language"
 name = "toml"
@@ -158,7 +150,7 @@ python-versions = ">=3.6.1"
 version = "8.1"
 
 [metadata]
-content-hash = "70379d4393b8df1e4ce680a05c390491ffee4f0ad9ab9ed2420c3a9c087bff93"
+content-hash = "03aabccba92e6b568d1e85fc96eea773288fe84bfe5e014ac35550857f0e81be"
 python-versions = "^3.7"
 
 [metadata.hashes]
@@ -174,7 +166,6 @@ pyee = ["705806bb09bc4b17a729d9a3d19a4f4e765abd010eb18e032d72f76452d07552", "b0e
 pyppeteer2 = ["61c8aa4d6ae8d751bf9b6dfbe5b38710ce82b4bde2e47f1f34811fcf61c9290f", "a469e08b67d6bd87c29d7b5e401d7843213e2a535b3ffbe39a00635535662a46"]
 screeninfo = ["811b61e10af7dd1f5e9cd246b4faf4f93b478757a8a6ace28c64754d2f1aff03"]
 sniffio = ["20ed6d5b46f8ae136d00b9dcb807615d83ed82ceea6b2058cecb696765246da5", "8e3810100f69fe0edd463d02ad407112542a11ffdc29f67db2bf3771afb87a21"]
-starlette = ["009ff25d0a96bd62272ae199a61a9e6b40b2f0be592459e61be80d631944d613", "b5b76bdb34b8073e4ec37e8791e250db9cde99953ca927de452e158c6845dcdd"]
 toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
 tqdm = ["0d8b5afb66e23d80433102e9bd8b5c8b65d34c2a2255b2de58d97bd2ea8170fd", "f35fb121bafa030bd94e74fcfd44f3c2830039a2ddef7fc87ef1c2d205237b24"]
 urllib3 = ["2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc", "87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"]
