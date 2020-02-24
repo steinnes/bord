@@ -1,5 +1,5 @@
 import json
-from typing import List
+from typing import List, Optional
 from dataclasses import dataclass
 
 from screeninfo import get_monitors, Enumerator, Monitor
@@ -10,6 +10,7 @@ class Config:
     interval: int
     urls: List[str]
     monitor: Monitor
+    executable_paht: Optional[str]
 
 
 def init_config(config_path: str = None):
