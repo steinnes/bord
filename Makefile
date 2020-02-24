@@ -1,3 +1,5 @@
+.PHONY: test
+
 black:
 	poetry run black $(shell git diff --name-only HEAD|grep \.py$)
 
@@ -6,3 +8,6 @@ lint:
 
 run:
 	poetry run python app.py
+
+test:
+	poetry run pytest test/ --pdb
