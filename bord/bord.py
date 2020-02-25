@@ -19,7 +19,7 @@ class Bord:
             args=["--kiosk", "--disable-infobars"],
         )
         if self.config.executable_path is not None:
-            browser_kwargs["executable_path"] = self.config.executable_path
+            browser_kwargs["executablePath"] = self.config.executable_path
 
         self.browser = await launch(**browser_kwargs)
         await self.init_tabs()
