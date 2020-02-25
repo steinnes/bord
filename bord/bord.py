@@ -11,14 +11,21 @@ class Bord:
         self._tab_index = 0
 
     async def start(self):
-        self.browser = await launch(
-            headless=False, dumpio=True, logLevel="INFO", autoclose=False, args=['--kiosk', '--disable-infobars'],
+        browser_kwargs = dict(
+            headless=False,
+            dumpio=True,
+            logLevel="INFO",
+            autoclose=False,
+            args=["--kiosk", "--disable-infobars"],
         )
+        if self.config.executable_path is not None:
+            browser_kwargs["executablePath"] = self.config.executable_path
+
+        self.browser = await launch(**browser_kwargs)
         await self.init_tabs()
         await self.set_tab_urls()
         while True:
             await self.rotate()
-
 
     async def init_tabs(self):
         self.tabs = await self.browser.pages()
@@ -29,9 +36,10 @@ class Bord:
     async def set_tab_urls(self):
         for tab, url in zip(self.tabs, self.config.urls):
             print("Set tab:", tab, " to url:", url)
-            await tab.setViewport(dict(width=self.config.monitor.width, height=self.config.monitor.height))
+            await tab.setViewport(
+                dict(width=self.config.monitor.width, height=self.config.monitor.height)
+            )
             await tab.goto(url, timeout=0)
-
 
     async def rotate(self):
         tab = self.tabs[self._tab_index]
