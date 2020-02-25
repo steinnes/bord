@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bord"
-version = "0.1.0"
+version = "0.2.0rc0"
 description = ""
 authors = ["Steinn Eldjárn Sigurðarson <steinnes@gmail.com>"]
 
