@@ -20,8 +20,9 @@ class Screen:
 class Config:
     monitor: Monitor
     screens: List[Screen]
-    _version: int = 2
+    version: int = 2
     interval: Optional[int] = 30
+    executable_path: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -42,6 +43,7 @@ class ConfigV1:
             monitor=self.monitor,
             screens=[Screen(url=u, display_time=self.interval, refresh_interval=None) for u in self.urls],
             interval=self.interval,
+            executable_path=self.executable_path
         )
 
 
@@ -55,18 +57,20 @@ def _get_system_graphics_subsystem():
 
 
 def init_config(config_path: str = None):
-    cfg_versions = {1: ConfigV1, 2: ConfigV2}
+    cfgversions = {1: ConfigV1, 2: ConfigV2}
     if config_path is None:
         config_path = "./config.json"
 
     with open(config_path) as fp:
         cfg_json = json.load(fp)
 
-    if cfg_json.get("_version") is not None:
+    if cfg_json.get("version") is not None:
         try:
-            cfg_class = cfg_versions[cfg_json.get("_version")]
+            cfg_class = cfgversions[cfg_json.get("version")]
         except KeyError:
-            cfg_class = ConfigV1
+            pass
+    else:
+        cfg_class = ConfigV1
 
     monitors = [monitor for monitor in get_monitors(_get_system_graphics_subsystem())]
     if len(monitors) > 1:
