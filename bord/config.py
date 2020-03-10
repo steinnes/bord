@@ -1,7 +1,7 @@
 import os
 import json
 from typing import List, Optional
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 import logging
 
 from screeninfo import get_monitors, Enumerator, Monitor
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class Screen:
     url: str
-    display_time: int
+    display_time: Optional[int] = 30
     refresh_interval: Optional[int] = None
 
 
@@ -21,14 +21,19 @@ class Config:
     monitor: Monitor
     screens: List[Screen]
     version: int = 2
-    interval: Optional[int] = 30
     executable_path: Optional[str] = None
 
 
-@dataclass(frozen=True)
-class ConfigV2(Config):
+class ConfigV2:
+    def __init__(self, **kwargs):
+        self.screens: List[Screen] = []
+        screens = kwargs.pop("screens")
+        for s in screens:
+            self.screens.append(Screen(**s))
+        self.kwargs = kwargs
+
     def to_config(self):
-        return Config(**asdict(self))
+        return Config(screens=self.screens, **self.kwargs)
 
 
 @dataclass(frozen=True)
@@ -42,8 +47,7 @@ class ConfigV1:
         return Config(
             monitor=self.monitor,
             screens=[Screen(url=u, display_time=self.interval, refresh_interval=None) for u in self.urls],
-            interval=self.interval,
-            executable_path=self.executable_path
+            executable_path=self.executable_path,
         )
 
 

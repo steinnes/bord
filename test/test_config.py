@@ -12,12 +12,11 @@ def config_file():
         1: {"interval": 10, "urls": ["https://a.com", "https://b.com"]},
         2: {
             "version": 2,
-            "interval": 10,
             "screens": [
-                {"url": "https://a.com"},
-                {"url": "https://b.com"}
-            ]
-        }
+                {"url": "https://a.com", "display_time": 10},
+                {"url": "https://b.com", "display_time": 10},
+            ],
+        },
     }
 
     @contextmanager
@@ -40,11 +39,11 @@ def test_config_defaults(config_file, config_version):
 
         # Assert
         assert len(cfg.screens) == 2
-        assert cfg.interval == 10
+        assert [screen.display_time for screen in cfg.screens] == [10, 10]
         assert cfg.executable_path is None
 
 
-def test_config_overrides(config_file):
+def test_config_v1_overrides(config_file):
     # Arrange
     with config_file(version=1, interval=1, urls=["https://c.com"], executable_path="/usr/bin/chromium") as f:
         # Act
@@ -52,5 +51,27 @@ def test_config_overrides(config_file):
 
         # Assert
         assert len(cfg.screens) == 1
-        assert cfg.interval == 1
+        assert [screen.display_time for screen in cfg.screens] == [1]
+        assert cfg.executable_path == "/usr/bin/chromium"
+
+
+def test_config_v2_overrides(config_file):
+    # Arrange
+    with config_file(
+        version=2,
+        screens=[
+            {"url": "https://c.com", "refresh_interval": 60, "display_time": 10},
+            {"url": "https://b.com", "display_time": 60},
+        ],
+        executable_path="/usr/bin/chromium",
+    ) as f:
+        # Act
+        cfg = init_config(f)
+
+        # Assert
+        assert len(cfg.screens) == 2
+        assert cfg.screens[0].refresh_interval == 60
+        assert cfg.screens[0].display_time == 10
+        assert cfg.screens[1].refresh_interval is None
+        assert cfg.screens[1].display_time == 60
         assert cfg.executable_path == "/usr/bin/chromium"
