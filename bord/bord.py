@@ -40,7 +40,7 @@ class Bord:
             dumpio=True,
             logLevel="INFO",
             autoclose=False,
-            # args=["--kiosk", "--disable-infobars"],
+            args=["--kiosk", "--disable-infobars"],
         )
         if self.config.executable_path is not None:
             browser_kwargs["executablePath"] = self.config.executable_path
