@@ -41,6 +41,7 @@ class Bord:
             logLevel="INFO",
             autoclose=False,
             args=["--kiosk", "--disable-infobars"],
+            ignoreDefaultArgs=["--enable-automation"],
         )
         if self.config.executable_path is not None:
             browser_kwargs["executablePath"] = self.config.executable_path
